@@ -1,5 +1,5 @@
 # vue-wallet
-
+new
 ## Project setup
 ```
 npm install
