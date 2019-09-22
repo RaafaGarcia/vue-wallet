@@ -1,8 +1,10 @@
 # vue-wallet
 new
+
+
 ## Project setup
 ```
-npm install
+npm installn
 ```
 
 ### Compiles and hot-reloads for development
@@ -13,6 +15,10 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
+
+firebase serve
+
+firebase deploy
 ```
 
 ### Run your tests
