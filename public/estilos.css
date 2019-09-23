@@ -1,13 +1,12 @@
 body{
-    background: url(https://ninetechs.000webhostapp.com/img/fondo2.jpg);
-    background-size: 800px;
+    background: url(https://ninetechs.000webhostapp.com/img/fondo.jpg);
+    background-size: cover;
 
 }
 
-#app{
+#cont{
     background: white;
     color:black;
-    max-width: 1000px;
     margin:  0 auto;
     padding: 20px;
     border-radius: 5px;

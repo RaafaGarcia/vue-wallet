@@ -8,11 +8,11 @@
                     <th>ID</th><th>NOMBRE</th><th>DESCRIPCION</th><th>FOTO</th><th>ACCION</th>
                 </thead>
                 <tbody>
-                    <tr v-for="paisaje in paisajes" :key="paisaje.id">
+                    <tr v-for="paisaje in paisajes" :key="paisaje.asas">
                         <td>{{paisaje.id}}</td>
                         <td>{{paisaje.nombre}}</td>
                         <td>{{paisaje.descripcion}}</td>
-                        <td><img :src="'https://ninetechs.000webhostapp.com/img/'+paisaje.foto" width="100" alt=""></td>
+                        <td><img :src="'http://localhost:8080/MyWallet/img/'+paisaje.foto" width="100" alt=""></td>
                         <td>
                             <button @click="editarUsuario=true;elegirPaisajes(paisaje)">EDITAR</button>
                             <button @click="eliminarUsuario=true;elegirPaisajes(paisaje)">ELIMINAR</button>
@@ -100,7 +100,7 @@ export default {
   methods:{
     mostrarPaisajes:function(){
       let el=this
-        axios.get("https://ninetechs.000webhostapp.com/api.php?accion=mostrar")
+        axios.get("http://localhost:8080/MyWallet/api.php?accion=mostrar")
         .then(function(response){
             console.log(response)
             el.paisajes=response.data.paisajes
