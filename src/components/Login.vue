@@ -14,20 +14,14 @@
                     <div class="container p-4 trans" >
                         <label for="uname"><b>Nombre de Usuario</b></label>
                         
-                        <input type="text" class="form-control" placeholder="Ingresar Usuario" name="uname" required v-model="user">
+                        <input type="text" class="form-control" placeholder="Ingresar Usuario" name="uname" required v-model="dataComp.user">
 
                         <label for="psw"><b>Contraseña</b></label>
-                        <input type="password" class="form-control" placeholder="Ingresar Contraseña" name="psw" required v-model="pass">
+                        <input type="password" class="form-control" placeholder="Ingresar Contraseña" name="psw" required v-model="dataComp.pass">
                             
                         <span class="btn btn-success btnEntrar" v-on:click="Iniciar()">Iniciar Sesión</span>
-                        <label for="" style="color:red">{{mensaje}}</label>
-                        <br>
-                        <label>
-                          <div class="custom-control custom-checkbox" >
-                            <input type="checkbox" class="custom-control-input" v-model="rec" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1" >Recordarme</label>
-                          </div>
-                        </label>
+                        <label for="" style="color:red">{{dataComp.mensaje}}</label>
+                        
                     </div>
 
                     <div class="container" style="background-color:#f1f1f1">
@@ -45,23 +39,29 @@ export default {
     usuario:String,
     contraseña:String,
     recordar:Boolean,
-    login:Boolean
+    
   },
     data(){
       return{
+        
+        dataComp:
+        {
         user:this.usuario,
         pass:this.contraseña,
-        rec:this.recordar,
-        log:this.login,
-        mensaje:null
+        log:false,
+        nav:0,
+        mensaje:null,
+        }
       }
     },
     
     methods:{
       Iniciar:function () {
-        if (this.user=="admin" && this.pass == "root") {
-          this.mensaje = ""
-            this.$emit('log', true)
+        if (this.dataComp.user=="admin" && this.dataComp.pass == "root") {
+          this.dataComp.mensaje = ""
+          this.dataComp.log=true
+          this.dataComp.nav=1
+            this.$emit('log', this.dataComp)
             
         }else{
           
@@ -84,8 +84,6 @@ input[type=text], input[type=password] {
 
 /* Set a style for all buttons */
 .btnEntrar {
-  
-  
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
@@ -93,9 +91,7 @@ input[type=text], input[type=password] {
   width: 100%;
 }
 
-span:hover {
-  opacity: 0.8;
-}
+
 
 /* Extra styles for the cancel button */
 .cancelbtn {
@@ -117,9 +113,7 @@ img.avatar {
 }
 
 
-.trans{
-background-color: transparent;
-}
+
 span.psw {
   float: right;
   padding-top: 16px;
@@ -158,9 +152,6 @@ span.psw {
   .cancelbtn {
      width: 100%;
   }
-  .back{
-background: rgba(0,0,0,0.1);
-border-radius: 10px;
-  }
+  
   
 </style>

@@ -72,7 +72,7 @@
                             <a class="dropdown-item btn btn-secondary" href="#">
                                 <i class="fas fa-chart-bar"></i>   Workflows</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item btn btn-secondary" v-on:click="confirm=true" href="#">
+                            <a class="dropdown-item btn btn-secondary" v-on:click="dataComp.confirm=true" >
                                 <i class="fas fa-sign-out-alt"></i>   Cerrar Sesión</a>
                             </div>
                             <!-- <label class="" for="" style="color:white">Cerrar Sesión</label> -->
@@ -84,7 +84,7 @@
             </div>
         </nav>
         
-        <div v-if="confirm" class="conten">
+        <div v-if="dataComp.confirm" class="conten">
           <div  class="mod p-4">
                     <div class="header">
                         
@@ -92,8 +92,8 @@
                     </div>
                     <div class="contenido " style="left:50%">
                         
-                         <button class="btn btn-outline-danger  btn-md mr-2 block" @click="confirm=false;" >Cancelar</button>
-                         <button class="btn btn-outline-success btn-md" @click="confirm=false;Cerrar()" >Aceptar</button>
+                         <button class="btn btn-outline-danger  btn-md mr-2 block" @click="dataComp.confirm=false;" >Cancelar</button>
+                         <button class="btn btn-outline-success btn-md"  @click="dataComp.confirm=false;Cerrar()" >Aceptar</button>
                     </div>
         </div>
         </div>
@@ -108,13 +108,18 @@ export default {
     },
     data(){
         return {
-            confirm:false
+            dataComp:{
+                confirm:false,
+                log:true,
+                nav:0
+            }
+            
         }
     },
     methods:{
       Cerrar:function () {
-        
-            this.$emit('log', false)
+            this.dataComp.log=false
+            this.$emit('log', this.dataComp)
             
       }
     }
@@ -136,5 +141,6 @@ export default {
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.5);
+    z-index: 100;
 }
 </style>
