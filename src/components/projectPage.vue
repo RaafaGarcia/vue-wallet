@@ -1,11 +1,12 @@
 <template>
-    <div name="Project Home" class="container" >
-        
+    <div name="Project Home"  >
+        <encabezado :login="true"/>
+        <div class="container">
 
          <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a class="btn btn-outline-light" >Workflows</a></li>
-            <li class="breadcrumb-item active btn btn-outline-light" aria-current="page">{{project.name}}</li>
+          <li class="breadcrumb-item btn btn-outline-light " aria-current="page" ><a href="#/">WorkFlows/</a></li>
+            <li class="breadcrumb-item active btn btn-outline-light" aria-current="page">{{projects[id].name}}</li>
         </ol>
         </nav>
 
@@ -17,23 +18,27 @@
         </ol>
         </nav>  -->
         <label for="" style="color:white">
-            {{project}}
+            {{projects[id]}}
         </label>
+        </div>
     </div>
 </template>
 <script>
+import encabezado from '../components/header.vue'
 export default {
     props:{
-        project:Object
+        id:String
+    },
+    components:{
+        encabezado
     },
     data(){
         return {
             dataComp:{
                 log:true,
                 nav:1,
-                project:{}
-            },
-            confirm:false,
+                project:this.project
+            }, 
             projects:
             [
                 {
@@ -52,10 +57,16 @@ export default {
                     integrantes:2
 
                 }
-            ]
+            ],
+            confirm:false,
+            
         }
     },
     methods:{
+        Workflows:function(){
+            this.dataComp.nav=1
+            this.$emit('log', this.dataComp)
+        },
         nav:function(nav){
             this.dataComp.project=project
             this.$emit('log', this.dataComp)

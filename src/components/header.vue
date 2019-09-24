@@ -10,7 +10,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#/about">Acerca de</a>
+                            <a class="nav-link" href="#/about/1">Acerca de</a>
                         </li>
                         <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,7 +41,7 @@
                     <ul class="navbar-nav mr-auto">
                         
                         <li class="nav-item">
-                            <a class="nav-link" href="#/about">Acerca de</a>
+                            <a class="nav-link" href="#/about/1">Acerca de</a>
                         </li>
                         <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,7 +72,7 @@
                             <a class="dropdown-item btn btn-secondary" href="#">
                                 <i class="fas fa-chart-bar"></i>   Workflows</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item btn btn-secondary" v-on:click="dataComp.confirm=true" >
+                            <a class="dropdown-item btn btn-secondary"  v-on:click="dataComp.confirm=true" >
                                 <i class="fas fa-sign-out-alt"></i>   Cerrar Sesión</a>
                             </div>
                             <!-- <label class="" for="" style="color:white">Cerrar Sesión</label> -->
@@ -93,7 +93,7 @@
                     <div class="contenido " style="left:50%">
                         
                          <button class="btn btn-outline-danger  btn-md mr-2 block" @click="dataComp.confirm=false;" >Cancelar</button>
-                         <button class="btn btn-outline-success btn-md"  @click="dataComp.confirm=false;Cerrar()" >Aceptar</button>
+                         <button class="btn btn-outline-success btn-md"  @click="dataComp.confirm=false;Cerrar()" ><a href="#/">Aceptar</a></button>
                     </div>
         </div>
         </div>
@@ -118,8 +118,11 @@ export default {
     },
     methods:{
       Cerrar:function () {
+            sessionStorage.log = false
+            sessionStorage.cuenta = ""
+            sessionStorage.passwort = ""
             this.dataComp.log=false
-            this.$emit('log', this.dataComp)
+            this.$emit("log",this.dataComp)
             
       }
     }

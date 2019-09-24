@@ -3,8 +3,8 @@
 
   
     <encabezado :login="false"  />
-
-    <h1>This is an about page</h1>
+    producto id
+    <h1>This is an about page  {{id}}</h1>
 
   </div>
 </template>
@@ -17,6 +17,9 @@ import encabezado from '@/components/header.vue'
 
 export default {
   name: 'home',
+  props:{
+    ['id']:Number
+  },
   components: {
     
     encabezado,

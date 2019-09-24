@@ -1,5 +1,6 @@
 <template>
     <div class="container" >
+    
         <div class="row trans mt-5">
             <div class="col-md-3">
 
@@ -14,10 +15,10 @@
                     <div class="container p-4 trans" >
                         <label for="uname"><b>Nombre de Usuario</b></label>
                         
-                        <input type="text" class="form-control" placeholder="Ingresar Usuario" name="uname" required v-model="dataComp.user">
+                        <input type="text" class="form-control" placeholder="Ingresar Usuario" v-on:keyup.enter="Iniciar()" name="uname" required v-model="dataComp.user">
 
                         <label for="psw"><b>Contraseña</b></label>
-                        <input type="password" class="form-control" placeholder="Ingresar Contraseña" name="psw" required v-model="dataComp.pass">
+                        <input type="password" class="form-control" placeholder="Ingresar Contraseña" v-on:keyup.enter="Iniciar()" name="psw" required v-model="dataComp.pass">
                             
                         <span class="btn btn-success btnEntrar" v-on:click="Iniciar()">Iniciar Sesión</span>
                         <label for="" style="color:red">{{dataComp.mensaje}}</label>
@@ -34,11 +35,15 @@
     </div>
 </template>
 <script>
+
 export default {
   props:{
     usuario:String,
     contraseña:String,
     recordar:Boolean,
+    
+  },
+  components: {
     
   },
     data(){
@@ -61,11 +66,23 @@ export default {
           this.dataComp.mensaje = ""
           this.dataComp.log=true
           this.dataComp.nav=1
+
+          
+                /*Captura de datos escrito en los inputs*/        
+                var name = this.dataComp.user
+                var pass = this.dataComp.pass
+                /*Guardando los datos en el LocalStorage*/
+                sessionStorage.setItem("cuenta", name);
+                sessionStorage.setItem("passwort", pass);
+                sessionStorage.setItem("log", true);
+                
+         
             this.$emit('log', this.dataComp)
             
         }else{
           
           this.mensaje = "Error de inicio de sesión"
+          sessionStorage.setItem("log", false);
         }
       }
     }
