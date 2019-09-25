@@ -1,32 +1,33 @@
 <template>
     <div class="container" >
+    
         <div class="row trans mt-5">
-            <div class="col-6">
-                esto
+            <div class="col-md-3">
+
             </div>
-            <div class="col-6">
-                <form class="modal-content animate" action="/action_page.php">
+            <div class="col-md-6">
+                <form class="modal-content animate mb-5" style="border-radius:10px;" action="/action_page.php">
                     <div class="imgcontainer">
                         <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
-                        <img src="http://localhost:8080/MyWallet/img/captura.png" width="100" alt="Avatar" class="avatar">
+                        <img src="../assets/149071.png" width="100" alt="Avatar" class="avatar">
                     </div>
 
                     <div class="container p-4 trans" >
-                        <label for="uname"><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="uname" required>
+                        <label for="uname"><b>Nombre de Usuario</b></label>
+                        
+                        <input type="text" class="form-control" placeholder="Ingresar Usuario" v-on:keyup.enter="Iniciar()" name="uname" required v-model="dataComp.user">
 
-                        <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required>
+                        <label for="psw"><b>Contraseña</b></label>
+                        <input type="password" class="form-control" placeholder="Ingresar Contraseña" v-on:keyup.enter="Iniciar()" name="psw" required v-model="dataComp.pass">
                             
-                        <button type="submit">Login</button>
-                        <label>
-                            <input type="checkbox" checked="checked" name="remember"> Remember me
-                        </label>
+                        <span class="btn btn-success btnEntrar" v-on:click="Iniciar()">Iniciar Sesión</span>
+                        <label for="" style="color:red">{{dataComp.mensaje}}</label>
+                        
                     </div>
 
                     <div class="container" style="background-color:#f1f1f1">
                     <!--     -->
-                    <span class="psw">Forgot <a href="#">password?</a></span>
+                    <span class="psw mb-3">Olvidaste la <a href="#">contraseña?</a></span>
                     </div>
                 </form>
             </div>
@@ -34,13 +35,63 @@
     </div>
 </template>
 <script>
+
 export default {
+  props:{
+    usuario:String,
+    contraseña:String,
+    recordar:Boolean,
     
+  },
+  components: {
+    
+  },
+    data(){
+      return{
+        
+        dataComp:
+        {
+        user:this.usuario,
+        pass:this.contraseña,
+        log:false,
+        nav:0,
+        mensaje:null,
+        }
+      }
+    },
+    
+    methods:{
+      Iniciar:function () {
+        if (this.dataComp.user=="admin" && this.dataComp.pass == "root") {
+          this.dataComp.mensaje = ""
+          this.dataComp.log=true
+          this.dataComp.nav=1
+
+          
+                /*Captura de datos escrito en los inputs*/        
+                var name = this.dataComp.user
+                var pass = this.dataComp.pass
+                /*Guardando los datos en el LocalStorage*/
+                sessionStorage.setItem("cuenta", name);
+                sessionStorage.setItem("passwort", pass);
+                sessionStorage.setItem("log", true);
+                
+         
+            this.$emit('log', this.dataComp)
+            
+        }else{
+          
+          this.mensaje = "Error de inicio de sesión"
+          sessionStorage.setItem("log", false);
+        }
+      }
+    }
 }
 </script>
 <style >
 input[type=text], input[type=password] {
   width: 100%;
+  height: 15%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -49,9 +100,7 @@ input[type=text], input[type=password] {
 }
 
 /* Set a style for all buttons */
-button {
-  background-color: #4CAF50;
-  color: white;
+.btnEntrar {
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
@@ -59,9 +108,7 @@ button {
   width: 100%;
 }
 
-button:hover {
-  opacity: 0.8;
-}
+
 
 /* Extra styles for the cancel button */
 .cancelbtn {
@@ -83,9 +130,7 @@ img.avatar {
 }
 
 
-.trans{
-background-color: transparent;
-}
+
 span.psw {
   float: right;
   padding-top: 16px;
@@ -124,4 +169,6 @@ span.psw {
   .cancelbtn {
      width: 100%;
   }
+  
+  
 </style>
