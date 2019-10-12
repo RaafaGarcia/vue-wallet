@@ -72,9 +72,9 @@ export default {
                 var name = this.dataComp.user
                 var pass = this.dataComp.pass
                 /*Guardando los datos en el LocalStorage*/
-                sessionStorage.setItem("cuenta", name);
-                sessionStorage.setItem("passwort", pass);
-                sessionStorage.setItem("log", true);
+                localStorage.setItem("cuenta", name);
+                localStorage.setItem("passwort", pass);
+                localStorage.setItem("log", true);
                 
          
             this.$emit('log', this.dataComp)
@@ -82,7 +82,7 @@ export default {
         }else{
           
           this.mensaje = "Error de inicio de sesión"
-          sessionStorage.setItem("log", false);
+          localStorage.setItem("log", false);
         }
       }
     }

@@ -118,9 +118,9 @@ export default {
     },
     methods:{
       Cerrar:function () {
-            sessionStorage.log = false
-            sessionStorage.cuenta = ""
-            sessionStorage.passwort = ""
+            localStorage.log = false
+            localStorage.cuenta = ""
+            localStorage.passwort = ""
             this.dataComp.log=false
             this.$emit("log",this.dataComp)
             

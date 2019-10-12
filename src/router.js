@@ -26,7 +26,7 @@ export default new Router({
       component: about
     },
     {
-      path: '/project/:id',
+      path: '/:project/:id',
       name: 'project',
       props: true,
       component: projectPage

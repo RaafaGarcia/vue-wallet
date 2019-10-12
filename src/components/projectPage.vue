@@ -19,6 +19,7 @@
         </nav>  -->
         <label for="" style="color:white">
             {{projects[id]}}
+            {{projec}}
         </label>
         </div>
     </div>
@@ -27,7 +28,8 @@
 import encabezado from '../components/header.vue'
 export default {
     props:{
-        id:String
+        id:String,
+        project:String
     },
     components:{
         encabezado

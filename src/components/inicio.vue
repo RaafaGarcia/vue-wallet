@@ -26,7 +26,7 @@
             <div  v-for="(project,index) in projects" :key="project.id" class="col-md-4 " >
                 <a  >
                 <button class="project story-project btn btn-outline-light animation  btn-block " type="link" id="capa"
-                    :style="' border-left: 15px solid '+project.color"   v-on:click="spiner=true;red(index)"
+                    :style="' border-left: 15px solid '+project.color"   v-on:click="spiner=true;red(project,index)"
                     >
                         <h3>{{project.name}}</h3>
                         <p>{{project.description}}</p>
@@ -87,20 +87,11 @@ export default {
 
             this.$emit('log', this.dataComp)
         },
-        red:function(index){
+        red:function(project,index){
             // alert("Hello! I am an alert box!!");
-           
-          
-          
-    setTimeout(this.redirijir(),500);
-          
-             
-
-            
+        this.$router.push(''+project.name+'/'+index)    
         },
-        redirijir:function(){
-            this.$router.push('project/1')
-        },
+        
         sleep: function(milisegundos){
           
             var comienzo = new Date().getTime();

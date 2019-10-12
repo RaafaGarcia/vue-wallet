@@ -48,9 +48,9 @@ export default {
   },
   created(){
     try {
-        if (sessionStorage.getItem("cuenta")) {
-             var nombre = sessionStorage.getItem("cuenta");
-        var apellido = sessionStorage.getItem("passwort");
+        if (localStorage.getItem("cuenta")) {
+             var nombre = localStorage.getItem("cuenta");
+        var apellido = localStorage.getItem("passwort");
         this.log=true
         this.cuenta=nombre
         this.pass=apellido
@@ -67,9 +67,9 @@ export default {
   },
   updated(){
     try {
-        if (sessionStorage.getItem("cuenta")) {
-             var nombre = sessionStorage.getItem("cuenta");
-        var apellido = sessionStorage.getItem("passwort");
+        if (localStorage.getItem("cuenta")) {
+             var nombre = localStorage.getItem("cuenta");
+        var apellido = localStorage.getItem("passwort");
         this.log=true
         this.cuenta=nombre
         this.pass=apellido
